@@ -1,7 +1,7 @@
 <?php
 
 require "../config.php";
-
+  // echo $dsn;
   try  {
     $connection = new PDO($dsn, $username, $password, $options);
     $sql = "SELECT * FROM users";

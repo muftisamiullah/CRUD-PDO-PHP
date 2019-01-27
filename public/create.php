@@ -15,16 +15,20 @@ if (isset($_POST['submit'])) {
     // $connection = new PDO($dsn, $username, $password, $options);
 
     //Detailed
-    $connection= new PDO("mysql:host=".$host.";dbname=".$dbname,$username,$password,$options);
+    // $connection= new PDO("mysql:host=".$host.";dbname=".$dbname,$username,$password,$options);
+    // or
+    $connection= new PDO("mysql:host=localhost;dbname=testing",$username,$password,$options);
     // print_r($_POST);
     $sql = "INSERT INTO users (firstname, lastname, email, age, location)
     VALUES (:firstname,:lastname,:email,:age,:location)";    
     $statement = $connection->prepare($sql);
+    // var_dump($statement);
     $statement->bindParam(":firstname", $_POST['firstname'], PDO::PARAM_STR);
     $statement->bindParam(":lastname", $_POST['lastname'], PDO::PARAM_STR);
     $statement->bindParam(":email", $_POST['email'], PDO::PARAM_STR);
     $statement->bindParam(":age", $_POST['age'], PDO::PARAM_STR);
     $statement->bindParam(":location", $_POST['location'], PDO::PARAM_STR);
+    // var_dump($statement);
     $statement->execute();
   } catch(PDOException $error) {
       echo $sql . "<br>" . $error->getMessage();

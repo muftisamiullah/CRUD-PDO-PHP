@@ -48,7 +48,7 @@ if (isset($_GET['id'])) {
 
     $sql = "SELECT * FROM users WHERE id = :id";
     $statement = $connection->prepare($sql);
-    $statement->bindValue(':id', $id);
+    $statement->bindParam(':id', $id);
     $statement->execute();
     
     $user = $statement->fetch(PDO::FETCH_ASSOC);
